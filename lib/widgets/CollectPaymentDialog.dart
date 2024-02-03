@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/globalvariabels.dart';
 import 'package:karaz_driver/widgets/BrandDivier.dart';
 import 'package:karaz_driver/widgets/TaxiButton.dart';
@@ -58,7 +58,7 @@ class CollectPayment extends StatelessWidget {
               width: 230,
               child: TaxiButton(
                 title: (paymentMethod == 'cash') ? 'COLLECT CASH' : 'CONFIRM',
-                color: AppColors.colorGreen,
+                color: AppColors.success,
                 onPressed: () {
                   Get.back();
                   Get.back();

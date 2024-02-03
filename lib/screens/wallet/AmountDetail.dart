@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/globalvariabels.dart';
 import 'package:karaz_driver/screens/wallet/walletController.dart';
 import 'package:karaz_driver/widgets/Dialogs.dart';
@@ -16,7 +16,7 @@ class AmountDetail extends GetView<WalletController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.colorBackground,
+      backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

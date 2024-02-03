@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 
 class ProgressDialog extends StatelessWidget {
   final String? status;
@@ -26,7 +26,7 @@ class ProgressDialog extends StatelessWidget {
               ),
               CircularProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(AppColors.colorAccent),
+                    AlwaysStoppedAnimation<Color>(AppColors.primary),
               ),
               SizedBox(
                 width: 25.0,

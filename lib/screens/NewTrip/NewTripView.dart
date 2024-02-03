@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/globalvariabels.dart';
 import 'package:karaz_driver/helpers/helpermethods.dart';
 import 'package:karaz_driver/screens/NewTrip/NewTripController.dart';
@@ -77,7 +77,7 @@ class NewTripView extends GetView<NewTripController> {
                           style: const TextStyle(
                               fontSize: 14,
                               fontFamily: 'Brand-Bold',
-                              color: AppColors.colorAccentPurple),
+                              color: AppColors.purple),
                         ),
                         const SizedBox(
                           height: 5,
@@ -96,7 +96,7 @@ class NewTripView extends GetView<NewTripController> {
                                 // ),
                                 Text(
                                   controller.tripDetails!.riderName!,
-                                  style: Get.textTheme.headline2,
+                                  style: Get.textTheme.displayMedium,
                                 ),
                               ],
                             ),
@@ -175,10 +175,10 @@ class NewTripView extends GetView<NewTripController> {
                             if (controller.status.value == 'accepted') {
                               controller.status.value = 'arrived';
                               rideRef!.child('status').set(('arrived'));
-
+                              //TODO
                               controller.buttonTitle.value = 'START TRIP';
                               controller.buttonColor.value =
-                                  AppColors.colorAccent1;
+                                  AppColors.black;
 
                               HelperMethods.showProgressDialog(context);
                               await controller.getDirection(

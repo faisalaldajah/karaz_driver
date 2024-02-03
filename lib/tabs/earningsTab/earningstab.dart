@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/history/historypage.dart';
 import 'package:karaz_driver/tabs/earningsTab/EarningsController.dart';
 import 'package:karaz_driver/widgets/BrandDivier.dart';
@@ -15,7 +15,7 @@ class EarningsView extends GetView<EarningsController> {
     return Column(
       children: [
         Container(
-          color: AppColors.colorPrimary,
+          color: AppColors.primary,
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.only(top: 70, bottom: 30),
@@ -23,13 +23,13 @@ class EarningsView extends GetView<EarningsController> {
               children: [
                 Text(
                   'Total Earnings'.tr,
-                  style: Get.textTheme.headline1!
+                  style: Get.textTheme.displayLarge!
                       .copyWith(color: AppColors.white, fontSize: 20),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   'JD ${Provider.of<AppData>(context).earnings}',
-                  style: Get.textTheme.headline1!
+                  style: Get.textTheme.displayLarge!
                       .copyWith(color: AppColors.white, fontSize: 40),
                 )
               ],
@@ -54,7 +54,7 @@ class EarningsView extends GetView<EarningsController> {
                 ),
                 Text(
                   'Trips',
-                  style: Get.textTheme.headline4,
+                  style: Get.textTheme.headlineMedium,
                 ),
                 Expanded(
                     child: Text(

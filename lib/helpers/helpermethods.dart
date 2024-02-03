@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:karaz_driver/Utilities/general.dart';
 import 'package:karaz_driver/datamodels/directiondetails.dart';
 import 'package:karaz_driver/datamodels/driver.dart';
 import 'package:provider/provider.dart';
@@ -53,7 +54,7 @@ class HelperMethods {
           tripStatusID: data['tripStatusID'],
           raiting: data['raiting'],
         );
-        currentDriverInfo = driver;
+        currentDriverInfo.value = driver;
         //dev.log(currentDriverInfo!.raiting.toString());
       }
       var values = [

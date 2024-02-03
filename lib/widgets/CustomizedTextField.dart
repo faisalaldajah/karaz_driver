@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 
 class CustomizedTextField extends StatelessWidget {
   const CustomizedTextField(
@@ -38,14 +38,14 @@ class CustomizedTextField extends StatelessWidget {
           children: [
             Text(
               title == null ? '' : title!.tr,
-              style: Get.textTheme.headline5,
+              style: Get.textTheme.headlineSmall,
             ),
             const SizedBox(
               width: 10.0,
             ),
             Text(
               (subtitle != null) ? subtitle!.tr : '',
-              style: Get.textTheme.headline6,
+              style: Get.textTheme.titleLarge,
             )
           ],
         ),
@@ -57,7 +57,7 @@ class CustomizedTextField extends StatelessWidget {
           keyboardType: textInputType,
           maxLines: 1,
           textAlign: TextAlign.start,
-          style: Get.textTheme.headline6,
+          style: Get.textTheme.titleLarge,
           obscureText: obscureText == true ? obscureText! : false,
           decoration: InputDecoration(
             suffixIcon: suffix,
@@ -84,7 +84,7 @@ class CustomizedTextField extends StatelessWidget {
             filled: true,
             fillColor: AppColors.grey.withOpacity(0.07),
             hintText: hint.tr,
-            hintStyle: Get.textTheme.headline6!.copyWith(
+            hintStyle: Get.textTheme.titleLarge!.copyWith(
               color: AppColors.grey,
               fontWeight: FontWeight.w400,
             ),

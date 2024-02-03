@@ -1,70 +1,78 @@
-import 'dart:io';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:karaz_driver/Services/AuthenticationService/Core/manager.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
-import 'package:karaz_driver/globalvariabels.dart';
-import 'package:karaz_driver/helpers/helpermethods.dart';
-import 'package:karaz_driver/screens/LogIn/login_binding.dart';
-import 'package:karaz_driver/screens/LogIn/loginpage.dart';
-import 'package:karaz_driver/screens/mainPage/mainpage.dart';
-import 'package:karaz_driver/tabs/homeTab/homeTabController.dart';
+import 'package:karaz_driver/Utilities/app_constent.dart';
+import 'package:karaz_driver/Utilities/general.dart';
+import 'package:karaz_driver/Utilities/routes/routes_string.dart';
+import 'package:karaz_driver/Utilities/tools/tools.dart';
+import 'package:karaz_driver/controller/address.dart';
+import 'package:karaz_driver/controller/app_user_controller.dart';
+import 'package:karaz_driver/datamodels/app_user/app_user.dart';
+import 'package:karaz_driver/datamodels/driver.dart';
+import 'package:karaz_driver/main.dart';
 
 class SplashController extends GetxController {
-  AuthenticationManager authManager = Get.find();
+  final Connectivity _connectivity = Connectivity();
 
+  RxString appTitle = 'Taxico'.tr.obs;
+  bool? firstTime = false;
   @override
   void onInit() async {
-    HelperMethods.getCurrentUserInfo();
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {}
-    } on SocketException catch (_) {
-      authManager.commonTools.showFailedSnackBar('No internet connectivity');
-    }
     super.onInit();
-  }
-
-  @override
-  Future<void> onReady() async {
-    if (await Permission.location.isDenied) {
-      Geolocator.requestPermission();
+    // FirebaseAuth.instance.signOut();
+    Get.lazyPut<AddressController>(() => AddressController());
+    Get.lazyPut<AppUserController>(() => AppUserController());
+    firstTime = box.read(AppConstants.ONBOARDING);
+    final ConnectivityResult connectivityResult =
+        await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.wifi ||
+        connectivityResult == ConnectivityResult.mobile) {
+      _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+      await Get.find<AddressController>().getCurrentLocation();
+      if (firstTime == false || firstTime == null) {
+        Get.offAndToNamed(RoutesString.onboarding);
+        return;
+      }
+      // here check if user logged in
+      bool data = FirebaseAuth.instance.currentUser?.uid != null;
+      if (data) {
+        currentDriverInfo.value = await Get.find<AppUserController>()
+                .getUserDetails(FirebaseAuth.instance.currentUser!.uid) ?? Driver();
+        Get.offAndToNamed(RoutesString.home);
+        return;
+      }
+      Get.offAndToNamed(RoutesString.welcome);
+    } else {
+      await checkMobileDataOrWifi(Get.context!);
     }
-    currentPosition = await getCurrentPosition();
-    if (currentPosition != null) {
-      Get.lazyPut<HomeTabController>(() => HomeTabController());
-      Get.offAll(
-        () => const MainPage(),
-      );
+  }
+
+  void _updateConnectionStatus(ConnectivityResult connectivityResult) async {
+    connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult != ConnectivityResult.wifi &&
+        connectivityResult != ConnectivityResult.mobile) {
+      Get.back();
+      await checkMobileDataOrWifi(Get.context!);
+      return;
     }
-    super.onReady();
   }
 
-  Future<Position> getCurrentPosition() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.bestForNavigation);
-    return position;
-  }
-
-  Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
-    Get.to(() => const LoginPage(), binding: LogInBinding());
-  }
-
-  Scaffold waitingView() {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: Center(
-        child: SvgPicture.asset(
-          'images/karaz_logo.svg',
-          width: Get.width * 0.4,
-          height: Get.width * 0.4,
-        ),
-      ),
+  Future<bool> checkMobileDataOrWifi(BuildContext context) async {
+    appTools.showAlertDialogOneFun(
+      context,
+      onTap: () async {
+        Get.back();
+        ConnectivityResult connectivityResult =
+            await (Connectivity().checkConnectivity());
+        if (connectivityResult != ConnectivityResult.wifi &&
+            connectivityResult != ConnectivityResult.mobile) {
+          Get.back();
+          await checkMobileDataOrWifi(Get.context!);
+        }
+      },
+      content: 'Unfortunately You Are Not Connected'.tr,
     );
+    return false;
   }
 }

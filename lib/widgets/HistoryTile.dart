@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/datamodels/history.dart';
 import 'package:karaz_driver/helpers/helpermethods.dart';
 
@@ -40,7 +40,7 @@ class HistoryTile extends StatelessWidget {
                     style: const TextStyle(
                       fontFamily: 'Brand-Bold',
                       fontSize: 16,
-                      color: AppColors.colorPrimary,
+                      color: AppColors.primary,
                     ),
                   ),
                 ],
@@ -71,7 +71,7 @@ class HistoryTile extends StatelessWidget {
               ),
               Text(
                 HelperMethods.formatMyDate(history!.historyTripDetail!.time!),
-                style: const TextStyle(color: AppColors.colorTextLight),
+                style: const TextStyle(color: AppColors.primaryBG),
               ),
             ],
           ),

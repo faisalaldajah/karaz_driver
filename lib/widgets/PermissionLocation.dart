@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 
 class PermissionLocation extends StatelessWidget {
   const PermissionLocation({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class PermissionLocation extends StatelessWidget {
             width: double.infinity,
             height: 50,
             decoration: BoxDecoration(
-                color: AppColors.colorAccent1,
+                color: AppColors.primary,
                 borderRadius: BorderRadius.circular(15)),
             child: TextButton(
               child: const Text(

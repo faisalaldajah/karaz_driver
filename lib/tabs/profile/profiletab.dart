@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
-import 'package:karaz_driver/globalvariabels.dart';
+import 'package:karaz_driver/Utilities/general.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/wallet/AddAmount.dart';
 import 'package:karaz_driver/tabs/profile/profileController.dart';
 import 'package:karaz_driver/widgets/GradientButton.dart';
@@ -18,20 +18,22 @@ class ProfileTab extends GetView<ProfileContrller> {
             Container(
               width: double.infinity,
               height: 250,
-              decoration: const BoxDecoration(color: AppColors.colorAccent1),
+              decoration: const BoxDecoration(color: AppColors.primary),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      currentDriverInfo!.amount!.amount!,
-                      style: Get.textTheme.headline1!
+                      currentDriverInfo.value.amount == null
+                          ? '0'
+                          : currentDriverInfo.value.amount!.amount!,
+                      style: Get.textTheme.displayLarge!
                           .copyWith(color: AppColors.white),
                     ),
                     const SizedBox(height: 20),
                     Text(
                       'Current balance'.tr,
-                      style: Get.textTheme.headline1!
+                      style: Get.textTheme.displayLarge!
                           .copyWith(color: AppColors.white),
                     ),
                   ],
@@ -42,30 +44,37 @@ class ProfileTab extends GetView<ProfileContrller> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              currentDriverInfo!.personalImageUrl!),
-                          fit: BoxFit.cover),
-                      shape: BoxShape.circle),
-                ),
+                currentDriverInfo.value.personalImageUrl != null
+                    ? Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    currentDriverInfo.value.personalImageUrl!),
+                                fit: BoxFit.cover),
+                            shape: BoxShape.circle),
+                      )
+                    : Container(
+                        width: 80,
+                        height: 80,
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
+                        child: const Icon(Icons.person_2),
+                      ),
                 const SizedBox(height: 10),
                 Text(
-                  '${'Name'.tr}: ${currentDriverInfo!.fullname!}',
-                  style: Get.textTheme.headline1!,
+                  '${'Name'.tr}: ${currentDriverInfo.value.fullname ?? ''}',
+                  style: Get.textTheme.displayLarge!,
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  '${'carType'.tr}: ${currentDriverInfo!.carType!}',
-                  style: Get.textTheme.headline1!,
+                  '${'carType'.tr}: ${currentDriverInfo.value.carType ?? ''}',
+                  style: Get.textTheme.displayLarge!,
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  '${'Car color'.tr}: ${currentDriverInfo!.carColor!}',
-                  style: Get.textTheme.headline1!,
+                  '${'Car color'.tr}: ${currentDriverInfo.value.carColor ?? ''}',
+                  style: Get.textTheme.displayLarge!,
                 ),
                 const SizedBox(height: 50),
                 GradientButton(

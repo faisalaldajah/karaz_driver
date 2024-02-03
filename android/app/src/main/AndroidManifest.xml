@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="wetech.karaz.driver.karaz_driver">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.taxico.driver">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <application android:label="Karaz Car Driver" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
+    <application android:label="Taxico Driver" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyALY906rdwqFYGffSyDo-j3OOAPdGUoscA" />
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as

@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/Utilities/tools/tools.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/DriverRegistration/controllers/delivery_registration_controller.dart';
 import 'package:karaz_driver/widgets/CustomizedTextField.dart';
 import 'package:karaz_driver/widgets/GradientButton.dart';
@@ -29,11 +30,11 @@ class SetPasswordView extends GetView<RegistrationController> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(),
+              const Row(),
               const SizedBox(height: 20),
               Text(
                 'Set Password'.tr,
-                style: Get.textTheme.headline6,
+                style: Get.textTheme.titleLarge,
               ),
               CustomizedTextField(
                 formatter: [
@@ -95,8 +96,8 @@ class SetPasswordView extends GetView<RegistrationController> {
                 title: '',
                 hint: 'New Password',
                 textInputType: TextInputType.text,
-                validator: (value) => controller.authManager.commonTools
-                    .passwordValidate(value, controller.newPassword),
+                validator: (value) =>
+                    appTools.passwordValidate(controller.newPassword),
                 icon: IconButton(
                   icon: controller.hidePassword.value
                       ? const Icon(Icons.visibility_off_outlined)
@@ -112,8 +113,8 @@ class SetPasswordView extends GetView<RegistrationController> {
                   LengthLimitingTextInputFormatter(16),
                   FilteringTextInputFormatter.deny(RegExp(r'\s'))
                 ],
-                validator: (value) => controller.authManager.commonTools
-                    .passwordValidate(value, controller.repeatNewPassword),
+                validator: (value) =>
+                    appTools.passwordValidate(controller.repeatNewPassword),
                 suffix: IconButton(
                   onPressed: () {
                     controller.showSecondPasssword.value =
@@ -188,7 +189,7 @@ class SetPasswordView extends GetView<RegistrationController> {
                     child: Text(
                       'By tapping continue below, you agree to our terms and conditions.'
                           .tr,
-                      style: Get.textTheme.headline6,
+                      style: Get.textTheme.titleLarge,
                       maxLines: 4,
                     ),
                   ),

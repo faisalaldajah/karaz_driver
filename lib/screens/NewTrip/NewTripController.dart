@@ -8,7 +8,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:karaz_driver/Services/AuthenticationService/Core/manager.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/Utilities/general.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/globalvariabels.dart';
 import 'package:karaz_driver/helpers/helpermethods.dart';
 import 'package:karaz_driver/helpers/mapkithelper.dart';
@@ -42,7 +43,7 @@ class NewTripController extends GetxController {
 
   RxString buttonTitle = 'ARRIVED'.obs;
 
-  Rx<Color> buttonColor = AppColors.colorGreen.obs;
+  Rx<Color> buttonColor = AppColors.success.obs;
 
   Timer? timer;
 
@@ -75,12 +76,12 @@ class NewTripController extends GetxController {
     rideRef = FirebaseDatabase.instance.ref().child('rideRequest/$rideID');
 
     rideRef!.child('status').set('accepted');
-    rideRef!.child('driver_name').set(currentDriverInfo!.fullname);
+    rideRef!.child('driver_name').set(currentDriverInfo.value.fullname);
     rideRef!
         .child('car_details')
-        .set('${currentDriverInfo!.carColor} - ${currentDriverInfo!.carType}');
-    rideRef!.child('driver_phone').set(currentDriverInfo!.phone);
-    rideRef!.child('driver_id').set(currentDriverInfo!.id);
+        .set('${currentDriverInfo.value.carColor} - ${currentDriverInfo.value.carType}');
+    rideRef!.child('driver_phone').set(currentDriverInfo.value.phone);
+    rideRef!.child('driver_id').set(currentDriverInfo.value.id);
 
     Map locationMap = {
       'latitude': currentPosition!.latitude.toString(),
@@ -247,16 +248,16 @@ class NewTripController extends GetxController {
       strokeWidth: 3,
       radius: 12,
       center: pickupLatLng,
-      fillColor: AppColors.colorGreen,
+      fillColor: AppColors.success,
     );
 
     Circle destinationCircle = Circle(
       circleId: const CircleId('destination'),
-      strokeColor: AppColors.colorAccentPurple,
+      strokeColor: AppColors.primary,
       strokeWidth: 3,
       radius: 12,
       center: destinationLatLng,
-      fillColor: AppColors.colorAccentPurple,
+      fillColor: AppColors.primary,
     );
 
     circles.add(pickupCircle);

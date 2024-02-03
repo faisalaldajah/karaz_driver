@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 
 class GradientButton extends StatelessWidget {
   final String? title;
@@ -20,9 +20,8 @@ class GradientButton extends StatelessWidget {
             end: Alignment.bottomLeft,
             // ignore: prefer_const_literals_to_create_immutables
             colors: [
-              AppColors.colorAccent1,
-              AppColors.colorAccent,
-              AppColors.colorAccent1,
+              AppColors.primary,
+              AppColors.primary,
             ]),
       ),
       child: TextButton(

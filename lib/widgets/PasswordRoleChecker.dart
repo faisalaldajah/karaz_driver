@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 
 class PasswordRoleChecker extends StatelessWidget {
   const PasswordRoleChecker({
@@ -28,7 +28,7 @@ class PasswordRoleChecker extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           content.tr,
-          style: Get.textTheme.headline6!.copyWith(
+          style: Get.textTheme.titleLarge!.copyWith(
             color: roleCheck == false
                 ? AppColors.grey.withOpacity(0.7)
                 : AppColors.success,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/widgets/TaxiButton.dart';
 
 class ConfirmSheet extends StatelessWidget {
@@ -44,7 +44,7 @@ class ConfirmSheet extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 22,
                   fontFamily: 'Brand-Bold',
-                  color: AppColors.colorText),
+                  color: AppColors.primaryBG),
             ),
             const SizedBox(
               height: 20,
@@ -52,7 +52,7 @@ class ConfirmSheet extends StatelessWidget {
             Text(
               subtitle!,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: AppColors.colorTextDark),
+              style: const TextStyle(color: AppColors.primaryBG),
             ),
             const SizedBox(
               height: 24,
@@ -62,7 +62,7 @@ class ConfirmSheet extends StatelessWidget {
                 Expanded(
                   child: TaxiButton(
                     title: 'back'.tr,
-                    color: AppColors.colorTextLight,
+                    color: AppColors.primaryBG,
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -74,7 +74,7 @@ class ConfirmSheet extends StatelessWidget {
                 Expanded(
                   child: TaxiButton(
                     onPressed: onPressed,
-                    color: AppColors.colorAccent1,
+                    color: AppColors.black,
                     title: 'confirm'.tr,
                   ),
                 ),

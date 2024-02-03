@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/wallet/AmountDetail.dart';
 
 class AddAmount extends StatelessWidget {
@@ -9,7 +9,7 @@ class AddAmount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.colorAccent1,
+        backgroundColor: AppColors.primary,
         title: const Center(
           child: Text('إختر الحزمة التي تريد'),
         ),
@@ -143,14 +143,14 @@ class PriceBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.colorBackground,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(10),
         // ignore: prefer_const_literals_to_create_immutables
         boxShadow: [
           const BoxShadow(
             blurRadius: 2,
             spreadRadius: 0.3,
-            color: AppColors.colorLightGray,
+            color: AppColors.grey,
           ),
         ],
       ),
@@ -162,9 +162,9 @@ class PriceBtn extends StatelessWidget {
           width: 90,
           height: 90,
           decoration: BoxDecoration(
-            color: AppColors.colorBackground,
+            color: AppColors.white,
             borderRadius: BorderRadius.circular(90),
-            border: Border.all(width: 3, color: AppColors.colorAccent),
+            border: Border.all(width: 3, color: AppColors.primary),
           ),
           child: Center(
             child: TextButton(

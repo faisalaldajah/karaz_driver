@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/tabs/earningsTab/earningstab.dart';
 import 'package:karaz_driver/tabs/homeTab/hometab.dart';
 import 'package:karaz_driver/tabs/profile/profiletab.dart';
@@ -71,8 +71,8 @@ class _MainPageState extends State<MainPage>
           ),
         ],
         currentIndex: selecetdIndex,
-        unselectedItemColor: AppColors.colorIcon,
-        selectedItemColor: AppColors.colorAccent1,
+        unselectedItemColor: AppColors.grey,
+        selectedItemColor: AppColors.lightBlack,
         showUnselectedLabels: true,
         selectedLabelStyle: const TextStyle(fontSize: 12),
         type: BottomNavigationBarType.fixed,

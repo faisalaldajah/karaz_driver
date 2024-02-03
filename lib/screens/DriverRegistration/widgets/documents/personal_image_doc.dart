@@ -5,7 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/DriverRegistration/controllers/delivery_registration_controller.dart';
 import 'package:karaz_driver/widgets/ShowImageByFile.dart';
 
@@ -27,7 +27,7 @@ class PersonalImageDoc extends GetView<RegistrationController> {
             child: Container(
               width: Get.width * 0.3,
               height: Get.height * 0.13,
-              decoration: const BoxDecoration(color: AppColors.greyWhite),
+              decoration: const BoxDecoration(color: AppColors.grey),
               child: controller.personalImageFile.value.path.isNotEmpty
                   ? Stack(
                       children: [

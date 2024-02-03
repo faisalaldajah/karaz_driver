@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/dataprovider.dart';
 import 'package:karaz_driver/screens/history/historyController.dart';
 import 'package:karaz_driver/widgets/BrandDivier.dart';
@@ -15,7 +15,7 @@ class HistoryPage extends GetView<HistoryController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Trip History'),
-        backgroundColor: AppColors.colorPrimary,
+        backgroundColor: AppColors.primary,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

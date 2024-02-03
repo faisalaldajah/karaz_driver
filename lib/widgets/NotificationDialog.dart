@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/Utilities/Methods/tools.dart';
 import 'package:karaz_driver/datamodels/tripdetails.dart';
 import 'package:karaz_driver/globalvariabels.dart';
@@ -111,7 +111,7 @@ class NotificationDialog extends StatelessWidget {
                   Expanded(
                     child: TaxiButton(
                       title: 'cancel'.tr,
-                      color: AppColors.colorPrimary,
+                      color: AppColors.primary,
                       onPressed: () async {
                         Get.back();
                       },
@@ -123,7 +123,7 @@ class NotificationDialog extends StatelessWidget {
                   Expanded(
                     child: TaxiButton(
                       title: 'accept'.tr,
-                      color: AppColors.colorGreen,
+                      color: AppColors.success,
                       onPressed: () async {
                         checkAvailablity(context);
                       },

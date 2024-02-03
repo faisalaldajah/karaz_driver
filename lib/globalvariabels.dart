@@ -5,7 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:karaz_driver/datamodels/driver.dart';
+import 'package:karaz_driver/Utilities/general.dart';
 import 'package:karaz_driver/screens/UnRegistration.dart';
 import 'package:karaz_driver/screens/mainPage/mainpage.dart';
 
@@ -27,7 +27,6 @@ Position? currentPosition;
 
 DatabaseReference? rideRef;
 
-Driver? currentDriverInfo;
 StreamSubscription<Position>? positionStream;
 
 DatabaseReference driversIsAvailableRef = FirebaseDatabase.instance
@@ -43,7 +42,7 @@ void getCurrentDriverInfo(context) async {
   driverRef.once().then((snapshot) {
     if (snapshot.snapshot.value != null) {
       //currentDriverInfo = Driver.fromSnapshot(snapshot);
-      if (currentDriverInfo!.approveDriver == false) {
+      if (currentDriverInfo.value.approveDriver == false) {
         Navigator.pushNamedAndRemoveUntil(
             context, UnRegistration.id, (route) => false);
       } else {

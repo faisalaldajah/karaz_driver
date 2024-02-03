@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'package:multi_image_picker_plus/multi_image_picker_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:karaz_driver/Services/AuthenticationService/Core/manager.dart';
 import 'package:karaz_driver/screens/splash/splash_binding.dart';
@@ -18,7 +18,7 @@ class SignUpController extends GetxController {
   Rx<TextEditingController> phoneController = TextEditingController().obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
-  AuthenticationManager authManager = Get.find();
+
   final GlobalKey<FormState> registrationKey = GlobalKey<FormState>();
 
   Rx<File> personalImageFile = File('').obs;
@@ -34,7 +34,7 @@ class SignUpController extends GetxController {
       numberOfDigit = false.obs;
 
   Future<void> registerUser() async {
-    authManager.commonTools.showLoading();
+    Get.find<AuthenticationManager>().commonTools.showLoading();
     try {
       final UserCredential drivers =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -57,30 +57,19 @@ class SignUpController extends GetxController {
       }
     } on FirebaseAuthException catch (e) {
       Get.back();
-      authManager.commonTools.showFailedSnackBar(e.code);
+      Get.find<AuthenticationManager>().commonTools.showFailedSnackBar(e.code);
     }
   }
 
   Future<void> selectFile(int index) async {
     List<Asset> profilePic1 = <Asset>[].obs;
     await MultiImagePicker.pickImages(
-      maxImages: 1,
-      enableCamera: true,
       selectedAssets: profilePic1,
-      cupertinoOptions: const CupertinoOptions(
-        takePhotoIcon: 'chat',
-      ),
-      materialOptions: const MaterialOptions(
-        actionBarColor: '#339A58',
-        statusBarColor: '#339A58',
-        allViewTitle: 'All Photos',
-        useDetailsView: false,
-        selectCircleStrokeColor: '#339A58',
-      ),
     ).then((value) async {
       var bytes = await value[0].getByteData();
       String dir = (await getApplicationDocumentsDirectory()).path;
-      await authManager.commonTools
+      await Get.find<AuthenticationManager>()
+          .commonTools
           .writeToFile(bytes, '$dir/${value[0].name}.jpg');
       File tempFile = File('$dir/${value[0].name}.jpg');
       if (index == 6) {

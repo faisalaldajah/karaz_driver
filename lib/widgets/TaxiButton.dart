@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:karaz_driver/Utilities/fonts.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 
 class TaxiButton extends StatelessWidget {
   final String? title;
@@ -18,7 +21,11 @@ class TaxiButton extends StatelessWidget {
         child: Center(
           child: Text(
             title!,
-            style: const TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
+            style: const TextStyle(
+              fontSize: 18,
+              fontFamily: AppFonts.jfFlat,
+              color: AppColors.defaultBlack,
+            ),
           ),
         ),
       ),

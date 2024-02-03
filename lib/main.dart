@@ -5,14 +5,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:karaz_driver/Utilities/routes/pages.dart';
 import 'package:provider/provider.dart';
 import 'package:karaz_driver/Services/settings_service.dart';
 import 'package:karaz_driver/Services/translation_service.dart';
 import 'package:karaz_driver/Utilities/Methods/tools.dart';
-import 'package:karaz_driver/Utilities/RoutesManagement/pages.dart';
 import 'package:karaz_driver/dataprovider.dart';
 import 'package:karaz_driver/globalvariabels.dart';
 import 'package:karaz_driver/helpers/pushnotificationservice.dart';
@@ -21,7 +20,6 @@ import 'package:karaz_driver/screens/LogIn/loginpage.dart';
 import 'package:karaz_driver/screens/UnRegistration.dart';
 import 'package:karaz_driver/screens/mainPage/mainpage.dart';
 import 'package:karaz_driver/screens/splash/splash_binding.dart';
-import 'package:karaz_driver/screens/splash/splash_view.dart';
 import 'package:vibration/vibration.dart';
 
 final FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -32,6 +30,7 @@ Future<void> backgroundHandler(RemoteMessage message) async {
   PushNotificationService().fetchRideInfo(rideID);
 }
 
+GetStorage box = GetStorage();
 Future<void> notificationConfiguration() async {
   await FirebaseMessaging.instance.getInitialMessage();
 
@@ -74,25 +73,6 @@ Future<void> main() async {
 
   SplashBinding().dependencies();
 
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    return Material(
-      child: Container(
-        margin: const EdgeInsets.all(20),
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset('images/undraw_bug_fixing_oc-7-a.svg'),
-            const SizedBox(height: 30),
-            Text(details.exception.toString()),
-            const SizedBox(height: 30),
-            Text(details.stackFilter.toString())
-          ],
-        ),
-      ),
-    );
-  };
-
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   currentFirebaseUser = FirebaseAuth.instance.currentUser;
@@ -122,10 +102,7 @@ class MyApp extends StatelessWidget {
         locale: SettingsService().getLocale(),
         fallbackLocale: TranslationService.fallbackLocale,
         theme: Get.find<SettingsService>().getLightTheme(),
-        getPages: AppPages.routes,
-        home: currentFirebaseUser == null
-            ? const LoginPage()
-            : const SplashView(),
+        getPages: getPages,
         routes: {
           MainPage.id: (context) => const MainPage(),
           LoginPage.id: (context) => const LoginPage(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/Utilities/tools/tools.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/DriverRegistration/controllers/delivery_registration_controller.dart';
 import 'package:karaz_driver/screens/DriverRegistration/views/delivery_car_registration.dart';
 import 'package:karaz_driver/screens/DriverRegistration/views/delivery_documents_registration.dart';
@@ -22,7 +23,7 @@ class RegistrationView extends GetView<RegistrationController> {
                 children: [
                   Text(
                     'Delivery Registration'.tr,
-                    style: Get.textTheme.headline6!
+                    style: Get.textTheme.titleLarge!
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
@@ -30,7 +31,7 @@ class RegistrationView extends GetView<RegistrationController> {
                   ),
                   Text(
                     'Register as a delivery captain'.tr,
-                    style: Get.textTheme.headline6!.copyWith(
+                    style: Get.textTheme.titleLarge!.copyWith(
                       color: Get.theme.hintColor.withOpacity(0.7),
                     ),
                   ),

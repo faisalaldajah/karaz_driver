@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/Utilities/Constants/Strings/AppStyles.dart';
 
 class UI {
@@ -9,10 +9,10 @@ class UI {
       {String title = 'success', String? message, int duration = 3}) {
     return GetSnackBar(
       titleText: Text(title.tr,
-          style: Get.textTheme.headline4!.merge(const TextStyle(
+          style: Get.textTheme.headlineMedium!.merge(const TextStyle(
               color: AppColors.white, fontWeight: FontWeight.w500))),
       messageText: Text(message!,
-          style: Get.textTheme.headline6!.merge(const TextStyle(
+          style: Get.textTheme.titleLarge!.merge(const TextStyle(
               color: AppColors.white, fontWeight: FontWeight.w500))),
       snackPosition: SnackPosition.BOTTOM,
       margin: const EdgeInsets.all(20),
@@ -36,10 +36,10 @@ class UI {
       {String title = 'failed', String? message, int duration = 5}) {
     return GetSnackBar(
       titleText: Text(title.tr,
-          style: Get.textTheme.headline4!.merge(const TextStyle(
+          style: Get.textTheme.headlineMedium!.merge(const TextStyle(
               color: AppColors.white, fontWeight: FontWeight.w500))),
       messageText: Text(message!,
-          style: Get.textTheme.headline6!.merge(const TextStyle(
+          style: Get.textTheme.titleLarge!.merge(const TextStyle(
               color: AppColors.white, fontWeight: FontWeight.w500))),
       snackPosition: SnackPosition.BOTTOM,
       margin: const EdgeInsets.all(20),
@@ -66,9 +66,9 @@ class UI {
     return InputDecoration(
       hintText: hintText,
       errorMaxLines: 3,
-      errorStyle: Get.theme.textTheme.bodyText2!
+      errorStyle: Get.theme.textTheme.bodyMedium!
           .copyWith(fontWeight: FontWeight.w500, color: Colors.red),
-      hintStyle: Get.theme.textTheme.bodyText2!.copyWith(
+      hintStyle: Get.theme.textTheme.bodyMedium!.copyWith(
           fontWeight: FontWeight.w500, color: AppColors.black.withOpacity(0.8)),
       prefixIcon: iconData != null
           ? Icon(iconData, color: Get.theme.focusColor).marginOnly(right: 14)
@@ -98,10 +98,10 @@ class UI {
       //       transId: message.data['TransId']);
       // },
       titleText: Text(message.notification!.title ?? '',
-          style: Get.textTheme.headline6!.merge(const TextStyle(
+          style: Get.textTheme.titleLarge!.merge(const TextStyle(
               color: AppColors.black, fontWeight: FontWeight.w500))),
       messageText: Text(message.notification!.body ?? '',
-          style: Get.textTheme.bodyText2!.merge(
+          style: Get.textTheme.bodyMedium!.merge(
               TextStyle(color: AppColors.grey.withOpacity(0.5), height: 1.5))),
       snackPosition: SnackPosition.TOP,
       margin: const EdgeInsets.all(10.0),

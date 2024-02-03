@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:karaz_driver/Services/translation_service.dart';
+import 'package:karaz_driver/Utilities/tools/tools.dart';
 import 'package:karaz_driver/screens/DriverRegistration/controllers/delivery_registration_controller.dart';
 import 'package:karaz_driver/screens/DriverRegistration/widgets/documents/car_front_image.dart';
 import 'package:karaz_driver/screens/DriverRegistration/widgets/documents/car_license_copy.dart';
@@ -28,38 +29,38 @@ class DeliveryDocumentsRegistration extends GetView<RegistrationController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Documents'.tr,
-              style: Get.textTheme.headline6!
+              style: Get.textTheme.titleLarge!
                   .copyWith(color: Colors.black, fontWeight: FontWeight.bold)),
           Text('${'Personal image'.tr}*',
-              style: Get.textTheme.headline6!.copyWith(
+              style: Get.textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               )).paddingOnly(top: 25),
           const PersonalImageDoc(),
           Text(
             '(Must have a white background &without any filter)'.tr,
-            style: Get.textTheme.headline6!.copyWith(
+            style: Get.textTheme.titleLarge!.copyWith(
               height: 1.5,
               color: Get.theme.focusColor,
             ),
           ).paddingOnly(top: 12),
           Text('${'acopyofthedrivinglicense'.tr}*',
-                  style: Get.textTheme.headline6!.copyWith(
+                  style: Get.textTheme.titleLarge!.copyWith(
                       color: Colors.black, fontWeight: FontWeight.bold))
               .paddingOnly(top: 25),
           const DrivingLicenseCopy(),
           Text('${'clearfrontimageforthevehicle'.tr}*',
-                  style: Get.textTheme.headline6!.copyWith(
+                  style: Get.textTheme.titleLarge!.copyWith(
                       color: Colors.black, fontWeight: FontWeight.bold))
               .paddingOnly(top: 25),
           const CarFrontImage(),
           Text('${'clearrearimageforthevehicle'.tr}*',
-                  style: Get.textTheme.headline6!.copyWith(
+                  style: Get.textTheme.titleLarge!.copyWith(
                       color: Colors.black, fontWeight: FontWeight.bold))
               .paddingOnly(top: 25),
           const CarRearImage(),
           Text('${'acopyofthecarlicense'.tr}*',
-                  style: Get.textTheme.headline6!.copyWith(
+                  style: Get.textTheme.titleLarge!.copyWith(
                       color: Colors.black, fontWeight: FontWeight.bold))
               .paddingOnly(top: 25),
           const CarLicenseCopy(),
@@ -75,7 +76,7 @@ class DeliveryDocumentsRegistration extends GetView<RegistrationController> {
                   children: [
                     Text(
                       'Next'.tr,
-                      style: Get.textTheme.headline5!
+                      style: Get.textTheme.headlineSmall!
                           .copyWith(color: Colors.white),
                     ),
                     const SizedBox(
@@ -90,27 +91,27 @@ class DeliveryDocumentsRegistration extends GetView<RegistrationController> {
                 width: Get.width * 0.4,
                 onPressed: () async {
                   if (controller.personalImageFile.value.path.isEmpty) {
-                    controller.authManager.commonTools
+                    appTools
                         .showFailedSnackBar('choosePersonalImage');
                     return;
                   }
                   if (controller.driverLicenseImage.value.path.isEmpty) {
-                    controller.authManager.commonTools
+                    appTools
                         .showFailedSnackBar('plesaseSelectLicenseID');
                     return;
                   }
                   if (controller.driverCarFrontImage.value.path.isEmpty) {
-                    controller.authManager.commonTools.showFailedSnackBar(
+                    appTools.showFailedSnackBar(
                         'PleaseSelectAClearFrontImageOfTheVehicle');
                     return;
                   }
                   if (controller.driverCarBackImage.value.path.isEmpty) {
-                    controller.authManager.commonTools.showFailedSnackBar(
+                    appTools.showFailedSnackBar(
                         'PleaseSelectAClearRearImageOfTheVehicle');
                     return;
                   }
                   if (controller.driverCarLicenseImage.value.path.isEmpty) {
-                    controller.authManager.commonTools
+                    appTools
                         .showFailedSnackBar('plesaseSelectVehicleLicenseID');
                     return;
                   }

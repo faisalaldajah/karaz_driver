@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:karaz_driver/Services/AuthenticationService/Core/manager.dart';
 import 'package:karaz_driver/Services/translation_service.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/Utilities/tools/tools.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/screens/DriverRegistration/controllers/delivery_registration_controller.dart';
 import 'package:karaz_driver/widgets/CustomizedTextField.dart';
 import 'package:karaz_driver/widgets/PasswordRoleChecker.dart';
@@ -18,13 +20,12 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
     return Obx(
       () => Form(
         key: carForm,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'details'.tr,
-              style: Get.textTheme.headline6!.copyWith(
+              style: Get.textTheme.titleLarge!.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,7 +39,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'fullname',
               textInputType: TextInputType.text,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => Get.find<AuthenticationManager>()
+                  .commonTools
                   .nameValidate(controller.emailController.value),
             ),
             const SizedBox(height: 10),
@@ -51,7 +53,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'nationalIDnumber',
               textInputType: TextInputType.number,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => Get.find<AuthenticationManager>()
+                  .commonTools
                   .idNumberValidate(value, controller.emailController.value),
             ),
             const SizedBox(height: 10),
@@ -65,7 +68,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'email address',
               textInputType: TextInputType.emailAddress,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => Get.find<AuthenticationManager>()
+                  .commonTools
                   .emailValidate(value, controller.emailController.value),
             ),
             const SizedBox(height: 10),
@@ -78,13 +82,14 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'Phone Number',
               textInputType: TextInputType.phone,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => Get.find<AuthenticationManager>()
+                  .commonTools
                   .phoneNumberValidate(controller.phoneController.value),
             ),
             const SizedBox(height: 10),
             Text(
               'Car Details'.tr,
-              style: Get.textTheme.headline6!.copyWith(
+              style: Get.textTheme.titleLarge!.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -99,7 +104,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'carType',
               textInputType: TextInputType.text,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => Get.find<AuthenticationManager>()
+                  .commonTools
                   .nameValidate(controller.phoneController.value),
             ),
             const SizedBox(height: 10),
@@ -112,8 +118,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'carModel',
               textInputType: TextInputType.text,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
-                  .nameValidate(controller.phoneController.value),
+              validator: (value) =>
+                  appTools.nameValidate(controller.phoneController.value),
             ),
             const SizedBox(height: 10),
             CustomizedTextField(
@@ -125,7 +131,7 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'manufacturingyear',
               textInputType: TextInputType.phone,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => appTools
                   .phoneNumberValidate(controller.phoneController.value),
             ),
             const SizedBox(height: 10),
@@ -138,7 +144,7 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'Vehicle plate numbers',
               textInputType: TextInputType.phone,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
+              validator: (value) => appTools
                   .phoneNumberValidate(controller.phoneController.value),
             ),
             const SizedBox(height: 10),
@@ -151,13 +157,13 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               hint: 'Vehicle car color',
               textInputType: TextInputType.text,
               obscureText: false,
-              validator: (value) => controller.authManager.commonTools
-                  .nameValidate(controller.phoneController.value),
+              validator: (value) =>
+                  appTools.nameValidate(controller.phoneController.value),
             ),
             const SizedBox(height: 10),
             Text(
               'Set Password'.tr,
-              style: Get.textTheme.headline6,
+              style: Get.textTheme.titleLarge,
             ),
             CustomizedTextField(
               formatter: [
@@ -219,8 +225,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
               title: '',
               hint: 'New Password',
               textInputType: TextInputType.text,
-              validator: (value) => controller.authManager.commonTools
-                  .passwordValidate(value, controller.newPassword),
+              validator: (value) =>
+                  appTools.passwordValidate(controller.newPassword),
               icon: IconButton(
                 icon: controller.hidePassword.value
                     ? const Icon(Icons.visibility_off_outlined)
@@ -236,8 +242,8 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
                 LengthLimitingTextInputFormatter(16),
                 FilteringTextInputFormatter.deny(RegExp(r'\s'))
               ],
-              validator: (value) => controller.authManager.commonTools
-                  .passwordValidate(value, controller.repeatNewPassword),
+              validator: (value) =>
+                  appTools.passwordValidate(controller.repeatNewPassword),
               suffix: IconButton(
                 onPressed: () {
                   controller.showSecondPasssword.value =
@@ -312,7 +318,7 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
                   child: Text(
                     'By tapping continue below, you agree to our terms and conditions.'
                         .tr,
-                    style: Get.textTheme.headline6,
+                    style: Get.textTheme.titleLarge,
                     maxLines: 4,
                   ),
                 ),
@@ -332,7 +338,7 @@ class DeliveryCarRegistration extends GetView<RegistrationController> {
                     children: [
                       Text(
                         'Next'.tr,
-                        style: Get.textTheme.headline5!
+                        style: Get.textTheme.headlineSmall!
                             .copyWith(color: Colors.white),
                       ),
                       const SizedBox(

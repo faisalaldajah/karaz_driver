@@ -9,7 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:karaz_driver/Services/translation_service.dart';
-import 'package:karaz_driver/Utilities/Constants/AppColors.dart';
+import 'package:karaz_driver/theme/app_colors.dart';
 import 'package:karaz_driver/Utilities/Constants/UI.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -386,19 +386,19 @@ class CommonTools {
           margin: const EdgeInsets.only(bottom: 10.0),
           child: Text(
             title,
-            style: Get.textTheme.headline3!.copyWith(color: AppColors.black),
+            style: Get.textTheme.displaySmall!.copyWith(color: AppColors.black),
           ),
         ),
         content: Text(
           message,
-          style: Get.textTheme.headline6!.copyWith(color: AppColors.black),
+          style: Get.textTheme.titleLarge!.copyWith(color: AppColors.black),
         ),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
             onPressed: fbFunction,
             child: Text(
               fbTitle,
-              style: Get.textTheme.headline6!
+              style: Get.textTheme.titleLarge!
                   .copyWith(color: fbColor, fontWeight: FontWeight.w500),
             ),
           ),
@@ -406,7 +406,7 @@ class CommonTools {
             onPressed: sbFunction,
             child: Text(
               sbTitle,
-              style: Get.textTheme.headline6!
+              style: Get.textTheme.titleLarge!
                   .copyWith(color: sbColor, fontWeight: FontWeight.w500),
             ),
           )
@@ -430,12 +430,12 @@ class CommonTools {
           margin: const EdgeInsets.only(bottom: 10.0),
           child: Text(
             title,
-            style: Get.textTheme.headline3!.copyWith(color: AppColors.black),
+            style: Get.textTheme.displaySmall!.copyWith(color: AppColors.black),
           ),
         ),
         content: Text(
           message,
-          style: Get.textTheme.bodyText2!.copyWith(color: AppColors.black),
+          style: Get.textTheme.bodyMedium!.copyWith(color: AppColors.black),
           maxLines: 3,
         ),
         actions: <CupertinoDialogAction>[
@@ -443,7 +443,7 @@ class CommonTools {
             onPressed: buttonFunction,
             child: Text(
               buttonTitle,
-              style: Get.textTheme.headline6!.copyWith(
+              style: Get.textTheme.titleLarge!.copyWith(
                   color: buttonTitleColor, fontWeight: FontWeight.w500),
             ),
           ),
